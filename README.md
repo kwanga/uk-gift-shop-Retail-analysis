@@ -179,32 +179,41 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 
 ### Dashboard Pages
 
-**Page 1: Business Performance Overview**
-- KPIs: Total Revenue, Total Customers, UK vs International split
-- <!-- add: exact KPI card numbers from your screenshot -->
+### Page 1: Corporate Revenue & Market Performance
 
-![Business Performance Overview](docs/images/page1_business_performance.png)
+- **KPIs:** Total Revenue (£9.77M), Total Customers (4K), Revenue Outside UK (£1.56M), Revenue Inside UK (£8.21M)
+- Top 10 high-value products by net sales revenue
+- Top international markets by sales volume (Netherlands, Ireland, Germany, France, Australia)
+- Hourly order velocity — confirms the noon peak
 
-**Page 2: Sales Overview**
-- Top 10 products by revenue
-- Top international markets (Netherlands, Ireland, Germany leading)
-- Hourly and weekday order trends (Thursday, 12 noon = peak)
+![Corporate Revenue & Market Performance]<img width="1136" height="611" alt="Screenshot 2026-08-20 220751" src="https://github.com/user-attachments/assets/ec50d57d-49c7-4d59-952d-78acf38e9a3c" />
 
-![Sales Overview](docs/images/page2_sales_overview.png)
+### Page 2: Customer Loyalty & RFM Segmentation — Segment View
 
-**Page 3: Customer Segmentation**
-- RFM segment distribution: Loyal (54.7% of customers), Champion (13.1%), At Risk (31.0%), Lost (1.2%)
-- Revenue contribution by segment: Loyal (72.3%), Champion (23.2%), At Risk (4.4%), Lost (0.1%)
-- Segment-level averages (recency, frequency, monetary)
+- Share of total customers by RFM segment: Loyal (54.75%), At Risk (30.98%), Champion (13.07%), Lost (1.2%)
+- Financial contribution by segment: Loyal (£6.44M, 72.26%), Champion (£2.07M, 23.22%), At Risk (£0.39M, 4.41%), Lost (0.11%)
+- Segment profile table with recency/frequency/monetary averages per segment
 
-![Customer Segmentation](docs/images/page3_customer_segmentation.png)
+![Customer Loyalty & RFM Segmentation — Segments]<img width="1140" height="612" alt="Screenshot 2026-08-20 220928" src="https://github.com/user-attachments/assets/86678319-06f1-4dee-88b3-abda2f38f6d9" />
 
-**Page 4: VIP & Retention**
-- VIP revenue and count: 434 customers, 61.38% of total revenue
-- Repeat vs one-time customer split: 65.58% repeat, generating £7.79M vs £521K
-- Cancellation rate: 16.12% of orders, 8.41% of value
 
-![VIP & Retention](docs/images/page4_vip_retention.png)
+### Page 3: Customer Loyalty & RFM Segmentation — VIP & Retention View
+
+- **KPIs:** Total Revenue (£9.77M), VIP Revenue (£5.47M), VIP Customer Count (434), VIP % of Customer Revenue (61.38%)
+- Audience retention health: Repeat Customers (2.85K, 65.58%) vs One-Time Customers (1.49K, 34.42%)
+- Daily sales metrics: orders and revenue by day of week (Thursday highest)
+
+![Customer Loyalty & RFM Segmentation — VIP & Retention]<img width="1147" height="602" alt="Screenshot 2026-08-20 220947" src="https://github.com/user-attachments/assets/a82f155d-8733-4239-b91c-b7bd9d894c8e" />
+
+
+### Page 4: Fulfillment, Timing & Logistics
+
+- **KPIs:** Avg Order Value (£494.10), Median Order Value (£303.84), Free Giveaway Units (17K)
+- Inventory leakage: top products given away at zero/negative price (16,696 units total)
+- Top 10 returned/cancelled products by rate
+- B2B matrix: bundle purchase counts by product (Regency Cakestand, Jumbo Bag Red Retrospot, White Hanging Heart T-Light Holder lead)
+
+![Fulfillment, Timing & Logistics]<img width="1147" height="617" alt="Screenshot 2026-08-20 221005" src="https://github.com/user-attachments/assets/3d802bea-06df-4b21-a614-f578dab7e106" />
 
 ## Deliverables
 
