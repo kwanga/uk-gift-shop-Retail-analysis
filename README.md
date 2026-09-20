@@ -138,23 +138,6 @@ online-retail-analytics/
 
 Full write-up with recommendations: [`docs/stakeholder_report.md`](docs/stakeholder_report.md).
 
-## Star Schema
-
-**Fact Table:** `cleaned_transactions` (line-item grain — one row per product per invoice, not one row per order)
-
-- Cancellation, return, and non-product flags pre-computed (`is_cancellation`, `is_return`, `is_non_product`)
-- Revenue pre-calculated (`quantity * unit_price`)
-- Zero/negative-price rows excluded at the view level
-
-**Dimensions:**
-
-- `Date` — generated calendar table (`Date`, `DayOfWeek`, `Month`, `Year`), joined on `invoice_date`
-- `rfm_customers` — one row per customer, joined on `customer_id`
-
-**Standalone (not related to the model):**
-
-- `raw_transactions` — unmodified source table, queried independently only for the `Free Giveaway Units` measure
-
 ## How This Was Built
 
 ### 1. Data Cleaning
