@@ -65,29 +65,29 @@ Raw Source File (Online_Retail.xlsx, 541,910 rows)
     ↓
 ┌───────────────────────────────────────┐
 │ RAW LAYER — raw_transactions           │
-│ Unmodified import, source fidelity     │
-│ No cleaning, no filters, no flags      │
 └───────────────────────────────────────┘
     ↓
 ┌───────────────────────────────────────┐
 │ CLEANED LAYER — cleaned_transactions   │
-│ Single view, not a copy                │
-│ Flags cancellations, returns, non-     │
-│ product rows; filters unit_price <= 0  │
 └───────────────────────────────────────┘
     ↓
 ┌───────────────────────────────────────┐
 │ ANALYSIS LAYER                         │
-│ rfm_customers (SQL) — RFM scoring      │
-│ Seasonality, basket, cancellation rate │
 └───────────────────────────────────────┘
     ↓
 ┌───────────────────────────────────────┐
 │ PRESENTATION LAYER                     │
-│ Power BI: star schema + DAX            │
-│ 4 dashboard pages                      │
 └───────────────────────────────────────┘
 ```
+### Where Each Layer Lives
+
+| Pipeline Layer | Implemented In |
+|---|---|
+| Raw | [`data/Online_Retail.xlsx`](data/Online_Retail.xlsx) → [`sql/postgresql/01_schema.sql`](sql/postgresql/01_schema.sql) |
+| Cleaned | [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploration.sql), [`03_cleaned_transactions_view.sql`](sql/postgresql/03_cleaned_transactions_view.sql) |
+| Analysis | [`04_rfm_segmentation.sql`](sql/postgresql/04_rfm_segmentation.sql), [`05_seasonality_and_basket.sql`](sql/postgresql/05_seasonality_and_basket.sql), [`06_product_pair_analysis.sql`](sql/postgresql/06_product_pair_analysis.sql) |
+| Presentation | [`power-bi/uk_retail_store.pbix`](power-bi/uk_retail_store.pbix), [`dax_measures.md`](power-bi/dax_measures.md) |
+
 ## Repository Structure
 
 ```
@@ -136,6 +136,23 @@ online-retail-analytics/
 | Peak timing | Thursdays, around 12 noon |
 
 Full write-up with recommendations: [`docs/stakeholder_report.md`](docs/stakeholder_report.md).
+
+## Star Schema
+
+**Fact Table:** `cleaned_transactions` (line-item grain — one row per product per invoice, not one row per order)
+
+- Cancellation, return, and non-product flags pre-computed (`is_cancellation`, `is_return`, `is_non_product`)
+- Revenue pre-calculated (`quantity * unit_price`)
+- Zero/negative-price rows excluded at the view level
+
+**Dimensions:**
+
+- `Date` — generated calendar table (`Date`, `DayOfWeek`, `Month`, `Year`), joined on `invoice_date`
+- `rfm_customers` — one row per customer, joined on `customer_id`
+
+**Standalone (not related to the model):**
+
+- `raw_transactions` — unmodified source table, queried independently only for the `Free Giveaway Units` measure
 
 ## How This Was Built
 
