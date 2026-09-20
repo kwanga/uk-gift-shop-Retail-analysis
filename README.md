@@ -161,11 +161,50 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 
 ### 4. Power BI
 
-The full report is in [`power-bi/uk_retail_store.pbix`](power-bi/uk_retail_store.pbix) — open it in Power BI Desktop to explore.
+## Power BI Dashboard
 
-- Star schema: `cleaned_transactions` (fact table) related to `Date` and `rfm_customers` (dimension tables); `raw_transactions` imported separately and left unrelated, used only by the `Free Giveaway Units` measure
-- DAX measures for revenue, AOV, cancellation rate by value (vs by order count), a median order value based on `PERCENTILE.INC` over customer lifetime spend, a VIP threshold (90th percentile of spend), and a repeat-customer rate used as a cross-check against the RFM segmentation
-- Full measure list and model relationships: [`power-bi/dax_measures.md`](power-bi/dax_measures.md) and [`power-bi/data_model.md`](power-bi/data_model.md)
+### Semantic Model
+
+**Architecture:** Star schema — `cleaned_transactions` as the fact table, related to `Date` and `rfm_customers` as dimensions; `raw_transactions` imported separately and left unrelated.
+
+**Key relationships:**
+- `Date[Date]` → `cleaned_transactions[invoice_date]` (1:Many)
+- `rfm_customers[customer_id]` → `cleaned_transactions[customer_id]` (1:Many)
+- `raw_transactions` — no relationships (queried independently for `Free Giveaway Units` only)
+
+**Critical decisions:**
+- Cleaning logic (`is_cancellation`, `is_return`, `is_non_product` flags) lives in a single SQL view, not duplicated across Power BI tables
+- `raw_transactions` kept unrelated on purpose — connecting it would risk double-counting rows that `cleaned_transactions` deliberately excludes
+- RFM scoring computed once in SQL (`rfm_customers`), not recalculated live in DAX, so segment boundaries stay fixed regardless of report filters
+
+### Dashboard Pages
+
+**Page 1: Business Performance Overview**
+- KPIs: Total Revenue, Total Customers, UK vs International split
+- <!-- add: exact KPI card numbers from your screenshot -->
+
+![Business Performance Overview](docs/images/page1_business_performance.png)
+
+**Page 2: Sales Overview**
+- Top 10 products by revenue
+- Top international markets (Netherlands, Ireland, Germany leading)
+- Hourly and weekday order trends (Thursday, 12 noon = peak)
+
+![Sales Overview](docs/images/page2_sales_overview.png)
+
+**Page 3: Customer Segmentation**
+- RFM segment distribution: Loyal (54.7% of customers), Champion (13.1%), At Risk (31.0%), Lost (1.2%)
+- Revenue contribution by segment: Loyal (72.3%), Champion (23.2%), At Risk (4.4%), Lost (0.1%)
+- Segment-level averages (recency, frequency, monetary)
+
+![Customer Segmentation](docs/images/page3_customer_segmentation.png)
+
+**Page 4: VIP & Retention**
+- VIP revenue and count: 434 customers, 61.38% of total revenue
+- Repeat vs one-time customer split: 65.58% repeat, generating £7.79M vs £521K
+- Cancellation rate: 16.12% of orders, 8.41% of value
+
+![VIP & Retention](docs/images/page4_vip_retention.png)
 
 ## Deliverables
 
