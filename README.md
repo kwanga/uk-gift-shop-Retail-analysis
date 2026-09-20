@@ -30,7 +30,7 @@ Problem Statement
 This project answers three questions for the business:
 
 1. **Where does revenue actually come from** — which markets, which customers, which products?
-2. **How valuable is a repeat customer** compared to a one-time buyer, and can that be quantified?
+2. **How valuable is a repeat customer**- compared to a one-time buyer, and can that be quantified?
 3. **Where's the operational risk** — cancellations, order timing, customer churn?
    
 The business shows a healthy top line but three structural risks sit underneath it:
@@ -47,7 +47,15 @@ Built an end-to-end analytics pipeline demonstrating:
 - **Visualization:** Power BI dashboard across 4 pages — Business Performance, Sales Overview, Customer Segmentation, VIP & Retention
 
 The raw data was never edited directly. All cleaning logic lives in a single SQL view, `cleaned_transactions`, so the transformation is transparent and repeatable — filters like excluding cancellations or guest customers are applied per query rather than baked into separate layered views. From there, RFM segmentation and reporting were built in SQL, then modeled in Power BI with DAX measures for the dashboard layer.
+## Business Impact
 
+| Metric | Value |
+|---|---|
+| Revenue Concentration Risk | 84.03% from UK (£9.77M) |
+| Retention Value Gap | Repeat customers generate ~15x more revenue than one-time buyers (£7.79M vs £521K) |
+| VIP Revenue Concentration | Top 10% of customers (434 people) drive 61.38% of revenue |
+| Core Segment Share | Loyal + Champion segments (67.9% of customers) generate 95.5% of revenue |
+| Cancellation Rate | 16.12% of orders, but only 8.41% of value — cancelled orders skew smaller than average |
 ## Repository Structure
 
 ```
