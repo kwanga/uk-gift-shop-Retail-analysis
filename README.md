@@ -122,6 +122,7 @@ online-retail-analytics/
     └── stakeholder_report.md
 ```
 `data/Online_Retail.xlsx` is the raw source file — the same one loaded into `raw_transactions` in `01_schema.sql`. It's committed here so the project is runnable end-to-end straight from the repo, without a separate download step.
+<img width="875" height="531" alt="image" src="https://github.com/user-attachments/assets/04d28a3b-f283-4c2c-b027-40dcce5fc9ca" />
 
 ## Key Findings
 
