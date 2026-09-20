@@ -25,13 +25,26 @@ End-to-end data analytics project on the UCI Online Retail dataset (541,000+ tra
 
 ---
 
-## Overview
-
+## EXECUTIVE SUMMARY
+Problem Statement
 This project answers three questions for the business:
 
 1. **Where does revenue actually come from** — which markets, which customers, which products?
 2. **How valuable is a repeat customer** compared to a one-time buyer, and can that be quantified?
 3. **Where's the operational risk** — cancellations, order timing, customer churn?
+   
+The business shows a healthy top line but three structural risks sit underneath it:
+
+1. **84.03% of revenue depends on a single market** (UK) — international sales (Netherlands, Ireland, Germany, France, Australia) make up just 15.9%
+2. **34.42% of customers buy once and haven't returned** — they generate only £521K, next to £7.79M from repeat buyers
+3. **The top 10% of customers (434 people) generate 61.38% of all revenue** — a customer-concentration risk as sharp as the geographic one
+
+Built an end-to-end analytics pipeline demonstrating:
+
+- **Data Engineering:** PostgreSQL cleaning pipeline (`raw_transactions` → `cleaned_transactions` view) with behavioral flags for cancellations, returns, and non-product line items
+- **Customer Analytics:** RFM segmentation into 4 behavioral groups (Champion / Loyal / At Risk / Lost) using quartile scoring
+- **Operational Analysis:** Cancellation rate reconciled two ways (16.12% by order count vs 8.41% by value) to catch a metric that looks different depending on how it's measured
+- **Visualization:** Power BI dashboard across 4 pages — Business Performance, Sales Overview, Customer Segmentation, VIP & Retention
 
 The raw data was never edited directly. All cleaning logic lives in a single SQL view, `cleaned_transactions`, so the transformation is transparent and repeatable — filters like excluding cancellations or guest customers are applied per query rather than baked into separate layered views. From there, RFM segmentation and reporting were built in SQL, then modeled in Power BI with DAX measures for the dashboard layer.
 
@@ -68,9 +81,6 @@ online-retail-analytics/
     ├── technical_documentation.docx    # original, with full screenshots
     └── stakeholder_report.md
 ```
-
-Both `sql/postgresql/` and `sql/mysql/` contain the same six scripts, run in numeric order. They produce identical results — the only differences are dialect-specific syntax, noted inline where they diverge.
-
 `data/Online_Retail.xlsx` is the raw source file — the same one loaded into `raw_transactions` in `01_schema.sql`. It's committed here so the project is runnable end-to-end straight from the repo, without a separate download step.
 
 ## Key Findings
