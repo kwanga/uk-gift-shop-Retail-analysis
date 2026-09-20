@@ -46,7 +46,7 @@ Built an end-to-end analytics pipeline demonstrating:
 - **Operational Analysis:** Cancellation rate reconciled two ways (16.12% by order count vs 8.41% by value) to catch a metric that looks different depending on how it's measured
 - **Visualization:** Power BI dashboard across 4 pages — Business Performance, Sales Overview, Customer Segmentation, VIP & Retention
 
-The raw data was never edited directly. All cleaning logic lives in a single SQL view, `cleaned_transactions`, so the transformation is transparent and repeatable — filters like excluding cancellations or guest customers are applied per query rather than baked into separate layered views. From there, RFM segmentation and reporting were built in SQL, then modeled in Power BI with DAX measures for the dashboard layer.
+The raw data was never edited directly. All cleaning logic lives in a single SQL view, `cleaned_transactions`, so the transformation is transparent and repeatable filters like excluding cancellations or guest customers are applied per query rather than baked into separate layered views. From there, RFM segmentation and reporting were built in SQL, then modeled in Power BI with DAX measures for the dashboard layer.
 ## Business Impact
 
 | Metric | Value |
@@ -56,6 +56,38 @@ The raw data was never edited directly. All cleaning logic lives in a single SQL
 | VIP Revenue Concentration | Top 10% of customers (434 people) drive 61.38% of revenue |
 | Core Segment Share | Loyal + Champion segments (67.9% of customers) generate 95.5% of revenue |
 | Cancellation Rate | 16.12% of orders, but only 8.41% of value — cancelled orders skew smaller than average |
+
+
+```
+Data Pipeline: Raw → Cleaned → Analysis
+
+Raw Source File (Online_Retail.xlsx, 541,910 rows)
+    ↓
+┌───────────────────────────────────────┐
+│ RAW LAYER — raw_transactions           │
+│ Unmodified import, source fidelity     │
+│ No cleaning, no filters, no flags      │
+└───────────────────────────────────────┘
+    ↓
+┌───────────────────────────────────────┐
+│ CLEANED LAYER — cleaned_transactions   │
+│ Single view, not a copy                │
+│ Flags cancellations, returns, non-     │
+│ product rows; filters unit_price <= 0  │
+└───────────────────────────────────────┘
+    ↓
+┌───────────────────────────────────────┐
+│ ANALYSIS LAYER                         │
+│ rfm_customers (SQL) — RFM scoring      │
+│ Seasonality, basket, cancellation rate │
+└───────────────────────────────────────┘
+    ↓
+┌───────────────────────────────────────┐
+│ PRESENTATION LAYER                     │
+│ Power BI: star schema + DAX            │
+│ 4 dashboard pages                      │
+└───────────────────────────────────────┘
+```
 ## Repository Structure
 
 ```
