@@ -185,8 +185,8 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 - Top 10 high-value products by net sales revenue
 - Top international markets by sales volume (Netherlands, Ireland, Germany, France, Australia)
 - Hourly order velocity — confirms the noon peak
-
-![Corporate Revenue & Market Performance]<img width="1136" height="611" alt="Screenshot 2026-08-20 220751" src="https://github.com/user-attachments/assets/ec50d57d-49c7-4d59-952d-78acf38e9a3c" />
+  
+<img width="1136" height="611" alt="Screenshot 2026-08-20 220751" src="https://github.com/user-attachments/assets/ec50d57d-49c7-4d59-952d-78acf38e9a3c" />
 
 ### Page 2: Customer Loyalty & RFM Segmentation — Segment View
 
@@ -194,7 +194,7 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 - Financial contribution by segment: Loyal (£6.44M, 72.26%), Champion (£2.07M, 23.22%), At Risk (£0.39M, 4.41%), Lost (0.11%)
 - Segment profile table with recency/frequency/monetary averages per segment
 
-![Customer Loyalty & RFM Segmentation — Segments]<img width="1140" height="612" alt="Screenshot 2026-08-20 220928" src="https://github.com/user-attachments/assets/86678319-06f1-4dee-88b3-abda2f38f6d9" />
+<img width="1140" height="612" alt="Screenshot 2026-08-20 220928" src="https://github.com/user-attachments/assets/86678319-06f1-4dee-88b3-abda2f38f6d9" />
 
 
 ### Page 3: Customer Loyalty & RFM Segmentation — VIP & Retention View
@@ -203,7 +203,7 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 - Audience retention health: Repeat Customers (2.85K, 65.58%) vs One-Time Customers (1.49K, 34.42%)
 - Daily sales metrics: orders and revenue by day of week (Thursday highest)
 
-![Customer Loyalty & RFM Segmentation — VIP & Retention]<img width="1147" height="602" alt="Screenshot 2026-08-20 220947" src="https://github.com/user-attachments/assets/a82f155d-8733-4239-b91c-b7bd9d894c8e" />
+<img width="1147" height="602" alt="Screenshot 2026-08-20 220947" src="https://github.com/user-attachments/assets/a82f155d-8733-4239-b91c-b7bd9d894c8e" />
 
 
 ### Page 4: Fulfillment, Timing & Logistics
@@ -213,7 +213,7 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 - Top 10 returned/cancelled products by rate
 - B2B matrix: bundle purchase counts by product (Regency Cakestand, Jumbo Bag Red Retrospot, White Hanging Heart T-Light Holder lead)
 
-![Fulfillment, Timing & Logistics]<img width="1147" height="617" alt="Screenshot 2026-08-20 221005" src="https://github.com/user-attachments/assets/3d802bea-06df-4b21-a614-f578dab7e106" />
+<img width="1147" height="617" alt="Screenshot 2026-08-20 221005" src="https://github.com/user-attachments/assets/3d802bea-06df-4b21-a614-f578dab7e106" />
 
 ## Deliverables
 
