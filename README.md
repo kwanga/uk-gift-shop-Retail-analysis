@@ -90,7 +90,6 @@ Raw Source File (Online_Retail.xlsx, 541,910 rows)
 
 ## Repository Structure
 
-```
 online-retail-analytics/
 ├── README.md
 ├── data/
@@ -120,7 +119,7 @@ online-retail-analytics/
     ├── technical_documentation.md
     ├── technical_documentation.docx    # original, with full screenshots
     └── stakeholder_report.md
-```
+
 <img width="875" height="531" alt="image" src="https://github.com/user-attachments/assets/04d28a3b-f283-4c2c-b027-40dcce5fc9ca" />
 
 ## Key Findings
@@ -153,14 +152,14 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 - **RFM segmentation** — Recency, Frequency, Monetary scoring using `NTILE(4)` (quartiles), summed into a score out of 12 and mapped to Champion / Loyal / At Risk / Lost, materialized as the `rfm_customers` table
 
 ## Segment Profiles
-```
+
 | Segment | Customers | % of Base | Avg Revenue | Avg Orders | Description |
 |---|---|---|---|---|---|
 | Loyal | 2,375 | 54.75% | £2,711.38 | 5.40 | Core repeat buyers, consistent order frequency |
 | Champion | 567 | 13.07% | £3,649.82 | 6.75 | Highest value and highest frequency — best customers |
 | At Risk | 1,344 | 30.98% | £292.45 | 1.35 | Low engagement, minimal repeat behavior |
 | Lost | 52 | 1.2% | £180.24 | 1.00 | Disengaged, essentially single-purchase |
-```
+
 **Total customers analyzed:** 4,338
 ## Insights
 
