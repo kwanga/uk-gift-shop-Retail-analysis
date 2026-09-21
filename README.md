@@ -144,7 +144,7 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 
 ### 2. SQL Analysis
 
-- **RFM segmentation** — Recency, Frequency, Monetary scoring using `NTILE(4)` (quartiles), summed into a score out of 12 and mapped to Champion / Loyal / At Risk / Lost, materialized as the `rfm_customers` table
+**RFM segmentation** — Recency, Frequency, Monetary scoring using `NTILE(4)` (quartiles), summed into a score out of 12 and mapped to Champion / Loyal / At Risk / Lost, materialized as the `rfm_customers` table
 
 ## Segment Profiles
 
@@ -327,6 +327,61 @@ psql -U postgres -d your_database -f sql/postgresql/01_schema.sql
 Then import `data/Online_Retail.xlsx` into `raw_transactions` (export to CSV first, or use pgAdmin's import wizard).
 
 **3. Run the SQL pipeline, in order**
+```
+psql -U postgres -d your_database -f sql/postgresql/02_data_exploration.sql
+psql -U postgres -d your_database -f sql/postgresql/03_cleaned_transactions_view.sql
+psql -U postgres -d your_database -f sql/postgresql/04_rfm_segmentation.sql
+psql -U postgres -d your_database -f sql/postgresql/05_seasonality_and_basket.sql
+psql -U postgres -d your_database -f sql/postgresql/06_product_pair_analysis.sql
+```
+
+**4. Open the Power BI report**
+
+- Open `power-bi/uk_retail_store.pbix`
+- Update the data source connection to point at your own PostgreSQL instance
+- Refresh the data model
+- Review the 4 dashboard pages
+
+**Expected runtime:** a few minutes total — the SQL scripts run quickly at this row count (~540K rows); most of the time is the Power BI refresh.
+
+## Key Learnings
+
+**Analytical:**
+- A single aggregate number can hide real structure — 65.58% retention and 4 RFM segments only became visible after segmenting; the topline average order value (£494.10) alone would have hidden that a handful of bulk orders were pulling it upward, which is why the median (£303.84) is reported alongside it
+- Cancellation rate reads differently depending on the denominator — 16.12% of orders vs 8.41% of value are both "correct," but they answer different questions
+- Guest checkouts (25% of rows) can't be silently dropped or silently kept — they had to be included for country/product analysis and excluded for anything requiring a customer identity, which meant deciding this per-query rather than once
+
+**Technical:**
+- Keeping the raw table untouched and doing all cleaning in a single view (`cleaned_transactions`) made every transformation auditable — nothing was ever a manual, unrepeatable edit
+- Flagging (`is_cancellation`, `is_return`, `is_non_product`) instead of deleting preserved the ability to measure things like cancellation rate as their own metric, rather than losing that information at the cleaning stage
+- `NTILE()` window functions made quartile-based RFM scoring straightforward, but the scoring direction matters — an ascending sort on "days since last purchase" puts the most recent customers in the lowest-numbered bucket, which is easy to get backwards
+- DAX measures computed over a dimension table (`rfm_customers[monetary]`) vs the fact table (`cleaned_transactions[revenue]`) answer subtly different questions even when they share a similar name — worth double-checking a measure's actual grain, not just its label
+
+**Business:**
+- Non-product StockCodes (`POST`, `DOT`, `M`) would have misrepresented postage as a top-selling product if the top-10 output had been trusted without a manual sanity check
+- A country-level query showing Hong Kong with revenue but zero customers looked like a bug — it wasn't; every Hong Kong transaction was a guest checkout, which is a lesson in checking a surprising result before assuming it's an error
+- An early retention calculation initially contradicted the RFM segmentation; re-running it with the same cancellation/guest filters as RFM resolved the discrepancy — when two methods disagree, that's a prompt to check both, not a reason to just pick one
+- Country names in the raw data (`EIRE` instead of `Ireland`) needed correcting before country-level reporting and mapping would read correctly — handled with a rename in SQL, not left for a presentation-layer fix in Power Query
+
+## Future Enhancements
+
+**Advanced Analytics:**
+- Cohort retention curves (rather than a single point-in-time repeat/one-time split)
+- Predictive customer lifetime value modeling
+- Full market-basket association rules (support, confidence, lift) rather than raw co-occurrence counts
+
+**Data Model:**
+- A proper product dimension table (product name/category currently lives directly on the fact table, since the source data has no separate product catalog to normalize from)
+- Automated, scheduled refresh instead of a manual Power BI data-source update
+
+**Operational Intelligence:**
+- Product-level cancellation-rate breakdown (currently only computed at the order level)
+- Alerting on anomalies like the Hong Kong zero-customer pattern, rather than catching them by manual review
+
+## Dataset Attribution
+
+**Source:** [UCI Machine Learning Repository — Online Retail Data Set](https://archive.ics.uci.edu/dataset/352/online+retail)
+**Description:** Transactions for a UK-based, registered non-store online retailer, 01/12/2010–09/12/2011, selling mainly unique all-occasion gifts.
 ## Author
 
 **Fanan Kwanga** — Data & Operations Analyst
