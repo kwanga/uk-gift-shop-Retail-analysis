@@ -160,9 +160,8 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 | Champion | 567 | 13.07% | £3,649.82 | 6.75 | Highest value and highest frequency — best customers |
 | At Risk | 1,344 | 30.98% | £292.45 | 1.35 | Low engagement, minimal repeat behavior |
 | Lost | 52 | 1.2% | £180.24 | 1.00 | Disengaged, essentially single-purchase |
-
-**Total customers analyzed:** 4,338
 ```
+**Total customers analyzed:** 4,338
 ## Insights
 
 **1. Revenue Concentration**
