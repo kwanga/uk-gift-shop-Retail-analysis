@@ -151,6 +151,39 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 ### 2. SQL Analysis
 
 - **RFM segmentation** — Recency, Frequency, Monetary scoring using `NTILE(4)` (quartiles), summed into a score out of 12 and mapped to Champion / Loyal / At Risk / Lost, materialized as the `rfm_customers` table
+
+## Segment Profiles
+```
+| Segment | Customers | % of Base | Avg Revenue | Avg Orders | Description |
+|---|---|---|---|---|---|
+| Loyal | 2,375 | 54.75% | £2,711.38 | 5.40 | Core repeat buyers, consistent order frequency |
+| Champion | 567 | 13.07% | £3,649.82 | 6.75 | Highest value and highest frequency — best customers |
+| At Risk | 1,344 | 30.98% | £292.45 | 1.35 | Low engagement, minimal repeat behavior |
+| Lost | 52 | 1.2% | £180.24 | 1.00 | Disengaged, essentially single-purchase |
+
+**Total customers analyzed:** 4,338
+```
+## Insights
+
+**1. Revenue Concentration**
+
+- Loyal + Champion customers: 2,942 people (67.82% of the base) generate £8.51M (95.48% of total revenue)
+- At Risk + Lost customers: 1,396 people (32.18% of the base) generate only £402K (4.52% of total revenue)
+- This mirrors the separate retention finding: 65.58% of customers are repeat buyers, generating £7.79M vs £521K from one-time buyers
+
+**2. Segment Opportunities**
+
+- **Loyal (54.75% of customers):** The core of the business — 5.40 average orders per customer, £2,711.38 average revenue. Priority: retention, not acquisition
+- **Champion (13.07%):** Smaller group but the highest per-customer value (£3,649.82, 6.75 avg orders) — the natural VIP program target
+- **At Risk (30.98%):** Large, low-engagement group (1.35 avg orders, £292.45 avg revenue) — win-back campaign candidates before they slide into Lost
+- **Lost (1.2%):** Smallest segment, essentially single-purchase customers (1.00 avg orders) who have disengaged — low near-term recovery priority given the small base
+
+**3. Revenue Distribution**
+
+- Champion customers punch above their size: 13.07% of customers, 23.22% of revenue
+- At Risk customers punch below their size: 30.98% of customers, only 4.41% of revenue
+- Loyal is both the largest segment and the largest revenue contributor — the segment most worth protecting
+
 - **Seasonality & basket reports** — revenue by month, weekday, and hour of day, plus average order value, items per basket, and cancellation rate (by order count and by value)
 - **Product-pair analysis** — self-join on `invoice_no` (top 20 by co-occurrence count) to find products frequently bought together — co-occurrence counting, not full association-rule mining
 
