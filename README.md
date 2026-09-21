@@ -262,7 +262,7 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 - **KPIs:** Total Revenue (£9.77M), Total Customers (4K), Revenue Outside UK (£1.56M), Revenue Inside UK (£8.21M)
 - Top 10 high-value products by net sales revenue
 - Top international markets by sales volume (Netherlands, Ireland, Germany, France, Australia)
-- Hourly order velocity — confirms the noon peak
+- Hourly order velocity; confirms the noon peak
   
 <img width="1136" height="611" alt="Screenshot 2026-08-20 220751" src="https://github.com/user-attachments/assets/ec50d57d-49c7-4d59-952d-78acf38e9a3c" />
 
