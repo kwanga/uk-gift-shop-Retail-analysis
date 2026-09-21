@@ -183,6 +183,39 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 - Loyal is both the largest segment and the largest revenue contributor — the segment most worth protecting
 
 - **Seasonality & basket reports** — revenue by month, weekday, and hour of day, plus average order value, items per basket, and cancellation rate (by order count and by value)
+  ## Monthly Performance
+
+| Month | Revenue | Orders |
+|---|---|---|
+| January | £691,364.56 | 1,086 |
+| February | £523,631.89 | 1,100 |
+| March | £717,639.36 | 1,454 |
+| April | £537,808.62 | 1,246 |
+| May | £770,536.02 | 1,681 |
+| June | £761,739.90 | 1,533 |
+| July | £719,221.19 | 1,475 |
+| August | £759,138.38 | 1,361 |
+| September | £1,058,590.17 | 1,837 |
+| October | £1,154,979.30 | 2,040 |
+| November | £1,509,496.33 | 2,769 |
+| December | £1,462,538.82 | 2,378 |
+
+> Note: this groups by month *name* only, combining Dec 2010 and Dec 2011 into one figure — see the limitation noted in `sql/postgresql/05_seasonality_and_basket.sql`.
+
+## Top Product Pairs (by co-occurrence)
+
+| Product A | Product B | Times Bought Together |
+|---|---|---|
+| 22386 | 85099B | 825 |
+| 22697 | 22699 | 767 |
+| 21931 | 85099B | 724 |
+| 22411 | 85099B | 680 |
+| 20725 | 22383 | 655 |
+| 20725 | 20727 | 641 |
+| 22726 | 22727 | 640 |
+| 22697 | 22698 | 632 |
+| 20725 | 22384 | 606 |
+| 22698 | 22699 | 598 |
 - **Product-pair analysis** — self-join on `invoice_no` (top 20 by co-occurrence count) to find products frequently bought together — co-occurrence counting, not full association-rule mining
 
 ### 3. Excel
