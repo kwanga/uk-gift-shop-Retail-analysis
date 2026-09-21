@@ -95,22 +95,17 @@ online-retail-analytics/
 ├── data/
 │   └── Online_Retail.xlsx          # raw dataset (541,910 rows)
 ├── sql/
-│   ├── postgresql/
-│   │   ├── 01_schema.sql
-│   │   ├── 02_data_exploration.sql
-│   │   ├── 03_cleaned_transactions_view.sql
-│   │   ├── 04_rfm_segmentation.sql
-│   │   ├── 05_seasonality_and_basket.sql
-│   │   └── 06_product_pair_analysis.sql
-│   └── mysql/
-│       ├── 01_schema.sql
-│       ├── 02_data_exploration.sql
-│       ├── 03_cleaned_transactions_view.sql
-│       ├── 04_rfm_segmentation.sql
-│       ├── 05_seasonality_and_basket.sql
-│       └── 06_product_pair_analysis.sql
+│   └── postgresql/
+│      ├── 01_schema.sql
+│      ├── 02_data_exploration.sql
+│      ├── 03_cleaned_transactions_view.sql
+│      ├── 04_rfm_segmentation.sql
+│      ├── 05_seasonality_and_basket.sql
+│      └── 06_product_pair_analysis.sql
+│   
 ├── excel/
 │   └── excel_logic.md
+|
 ├── power-bi/
 │   ├── uk_retail_store.pbix        # the actual Power BI report
 │   ├── data_model.md
@@ -309,7 +304,29 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 [UCI Machine Learning Repository — Online Retail Data Set](https://archive.ics.uci.edu/dataset/352/online+retail). Transactions for a UK-based, registered non-store online retailer, 01/12/2010–09/12/2011, selling mainly unique all-occasion gifts. Included in this repo at `data/Online_Retail.xlsx`.
 
 > **Note on repo size:** the dataset is ~23 MB. That's well under GitHub's hard 100 MB file limit, but if you clone this repo as a starting point for your own fork and plan to add much more binary data (larger exports, additional `.pbix` versions), consider [Git LFS](https://git-lfs.com/) rather than committing large files directly.
+## How to Run
 
+### Prerequisites
+
+- PostgreSQL 18+ (or MySQL 8.0+, if using the `sql/mysql/` scripts instead)
+- Power BI Desktop (Windows)
+- Excel (optional — only needed if you want to re-run the exploratory checks manually)
+
+### Setup Instructions
+
+**1. Get the dataset**
+
+The raw file is already included: `data/Online_Retail.xlsx`. No download needed.
+
+**2. Create the database and load the raw table**
+
+```sql
+psql -U postgres -d your_database -f sql/postgresql/01_schema.sql
+```
+
+Then import `data/Online_Retail.xlsx` into `raw_transactions` (export to CSV first, or use pgAdmin's import wizard).
+
+**3. Run the SQL pipeline, in order**
 ## Author
 
 **Fanan Kwanga** — Data & Operations Analyst
