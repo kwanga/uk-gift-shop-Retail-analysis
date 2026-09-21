@@ -224,11 +224,11 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 
 - Order volume climbs steadily from January through November, peaking in November (2,769 orders, £1.51M) before dipping slightly in December (2,378 orders, £1.46M) — consistent with pre-holiday buying finishing before the holiday itself
 - Thursday is the single highest-volume day of the week; the dataset shows no Saturday transactions at all, meaning the business effectively runs a 6-day week
-- Orders concentrate sharply around midday — rising from early morning, peaking near 12 noon, and tapering off by early evening — making the late-morning/midday window the highest-leverage time for both staffing and promotional timing
+- Orders concentrate sharply around midday; rising from early morning, peaking near 12 noon, and tapering off by early evening — making the late-morning/midday window the highest-leverage time for both staffing and promotional timing
 
 **2. Basket Composition**
 
-- Average order value (£494.10) sits well above the median (£303.84 — see note below on what this actually measures), meaning a relatively small number of large bulk orders pull the average upward
+- Average order value (£494.10) sits well above the median (£303.84 ), meaning a relatively small number of large bulk orders pull the average upward
 - Cancellations affect 16.12% of orders but only 8.41% of order value — cancelled orders tend to be smaller than a typical order, not representative of the average basket
 - 17K units (16,696 confirmed) were moved as free giveaways rather than genuine sales — worth excluding from any basket-value analysis, which the cleaned dataset already does
 
@@ -237,8 +237,6 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 - The strongest product pairing (stock codes 22386 + 85099B) co-occurred on 825 separate invoices — a clear "frequently bought together" candidate
 - Several products cluster into repeated pairs across the top 20 results (e.g. 20725 appears in six of the top 20 pairs), suggesting a small set of "anchor" products that pull multiple others into the same basket
 - This is co-occurrence counting, not validated association-rule mining — it flags popular pairings, not proven cross-sell relationships (see the caveat in `docs/technical_documentation.md`)
-
-- **Product-pair analysis** — self-join on `invoice_no` (top 20 by co-occurrence count) to find products frequently bought together — co-occurrence counting, not full association-rule mining
 
 ### 3. Excel
 
