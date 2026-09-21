@@ -237,11 +237,11 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 
 Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at the raw data before it was loaded into SQL — pivot tables for a rough sense of country and monthly revenue splits, and to sanity-check the SQL output against a second, independent calculation method. Logic and formulas: [`excel/excel_logic.md`](excel/excel_logic.md).
 
-### 4. Power BI
+## 4. Power BI
 
 ## Power BI Dashboard
 
-### Semantic Model
+# Semantic Model
 
 **Architecture:** Star schema — `cleaned_transactions` as the fact table, related to `Date` and `rfm_customers` as dimensions; `raw_transactions` imported separately and left unrelated.
 
@@ -308,7 +308,7 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 
 ### Prerequisites
 
-- PostgreSQL 18+ (or MySQL 8.0+, if using the `sql/mysql/` scripts instead)
+- PostgreSQL 18+ (or MySQL 8.0+)
 - Power BI Desktop (Windows)
 - Excel (optional — only needed if you want to re-run the exploratory checks manually)
 
