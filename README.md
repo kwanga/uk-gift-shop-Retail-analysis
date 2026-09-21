@@ -182,8 +182,9 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 - At Risk customers punch below their size: 30.98% of customers, only 4.41% of revenue
 - Loyal is both the largest segment and the largest revenue contributor — the segment most worth protecting
 
-- **Seasonality & basket reports** — revenue by month, weekday, and hour of day, plus average order value, items per basket, and cancellation rate (by order count and by value)
-  ## Monthly Performance
+  ## Seasonality & basket reports
+   revenue by month, weekday, and hour of day, plus average order value, items per basket, and cancellation rate (by order count and by value)
+  **Monthly Performance**
 
 | Month | Revenue | Orders |
 |---|---|---|
@@ -206,16 +207,17 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 
 | Product A | Product B | Times Bought Together |
 |---|---|---|
-| 22386 | 85099B | 825 |
-| 22697 | 22699 | 767 |
-| 21931 | 85099B | 724 |
-| 22411 | 85099B | 680 |
-| 20725 | 22383 | 655 |
-| 20725 | 20727 | 641 |
-| 22726 | 22727 | 640 |
-| 22697 | 22698 | 632 |
-| 20725 | 22384 | 606 |
-| 22698 | 22699 | 598 |
+| 22386-Jumbo Bag Pink Polkadot | 85099B -Jumbo Bag Red Retrospot| 825 |
+| 22697-Green Regency Teacup and Saucer | 22699 -Roses Regency Teacup and Saucer| 767 |
+| 21931-Jumbo Storage Bag Suki | 85099B -Jumbo Bag Red Retrospot | 724 |
+| 22411-Jumbo Shopper Vintage Red Paisley | 85099B -Jumbo Bag Red Retrospot | 680 |
+| 20725-Lunch Bag Red Retrospot | 22383 -Lunch Bag Suki Design | 655 |
+| 20725-Lunch Bag Red Retrospot	| 20727 -Lunch Bag Black Skull| 641 |
+| 22726-Alarm Clock Bakelike Green | 22727 -Alarm Clock Bakelike Red| 640 |
+| 22697-Green Regency Teacup and Saucer | 22698 -Pink Regency Teacup and Saucer| 632 |
+| 20725-Lunch Bag Red Retrospot | 22384 -Lunch Bag Pink Polkadot| 606 |
+| 22698-Pink Regency Teacup and Saucer | 22699 -Roses Regency Teacup and Saucer| 598 |
+
 - **Product-pair analysis** — self-join on `invoice_no` (top 20 by co-occurrence count) to find products frequently bought together — co-occurrence counting, not full association-rule mining
 
 ### 3. Excel
