@@ -89,7 +89,7 @@ Raw Source File (Online_Retail.xlsx, 541,910 rows)
 | Presentation | [`power-bi/uk_retail_store.pbix`](power-bi/uk_retail_store.pbix), [`dax_measures.md`](power-bi/dax_measures.md) |
 
 ## Repository Structure
-
+```
 online-retail-analytics/
 ├── README.md
 ├── data/
@@ -119,7 +119,7 @@ online-retail-analytics/
     ├── technical_documentation.md
     ├── technical_documentation.docx    # original, with full screenshots
     └── stakeholder_report.md
-
+```
 <img width="875" height="531" alt="image" src="https://github.com/user-attachments/assets/04d28a3b-f283-4c2c-b027-40dcce5fc9ca" />
 
 ## Key Findings
