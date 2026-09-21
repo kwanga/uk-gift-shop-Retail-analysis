@@ -237,9 +237,9 @@ See [`sql/postgresql/02_data_exploration.sql`](sql/postgresql/02_data_exploratio
 
 Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at the raw data before it was loaded into SQL — pivot tables for a rough sense of country and monthly revenue splits, and to sanity-check the SQL output against a second, independent calculation method. Logic and formulas: [`excel/excel_logic.md`](excel/excel_logic.md).
 
-#### 4. Power BI
+## 4. Power BI
 
-## Power BI Dashboard
+### Power BI Dashboard
 
 # Semantic Model
 
