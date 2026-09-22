@@ -11,7 +11,8 @@ End-to-end data analytics project on the UCI Online Retail dataset (541,000+ tra
 
 ## Table of Contents
 
-- [Overview](#overview)
+- [EXECUTIVE SUMMARY](# EXECUTIVE SUMMARY)
+-  [Dataset](#dataset)
 - [Repository Structure](#repository-structure)
 - [Key Findings](#key-findings)
 - [How This Was Built](#how-this-was-built)
@@ -20,7 +21,6 @@ End-to-end data analytics project on the UCI Online Retail dataset (541,000+ tra
   - [3. Excel](#3-excel)
   - [4. Power BI](#4-power-bi)
 - [Deliverables](#deliverables)
-- [Dataset](#dataset)
 - [Author](#author)
 
 ---
@@ -47,6 +47,15 @@ Built an end-to-end analytics pipeline demonstrating:
 - **Visualization:** Power BI dashboard across 4 pages — Business Performance, Sales Overview, Customer Segmentation, VIP & Retention
 
 The raw data was never edited directly. All cleaning logic lives in a single SQL view, `cleaned_transactions`, so the transformation is transparent and repeatable filters like excluding cancellations or guest customers are applied per query rather than baked into separate layered views. From there, RFM segmentation and reporting were built in SQL, then modeled in Power BI with DAX measures for the dashboard layer.
+## Dataset
+
+[UCI Machine Learning Repository — Online Retail Data Set](https://archive.ics.uci.edu/dataset/352/online+retail). Transactions for a UK-based, registered non-store online retailer, 01/12/2010–09/12/2011, selling mainly unique all-occasion gifts. Included in this repo at `data/Online_Retail.xlsx`.
+## Dataset Summary
+●	Source: UCI Machine Learning Repository — Online Retail dataset
+●	Size: 541,909 transaction line items, 8 columns
+●	Timeframe: December 1, 2010 – December 9, 2011
+●	Grain: one row per product line item per invoice (not one row per order)
+●	Columns: InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country
 ## Business Impact
 
 | Metric | Value |
@@ -302,8 +311,13 @@ Excel (`data/Online_Retail.xlsx`) was used for a first-pass exploratory look at 
 ## Dataset
 
 [UCI Machine Learning Repository — Online Retail Data Set](https://archive.ics.uci.edu/dataset/352/online+retail). Transactions for a UK-based, registered non-store online retailer, 01/12/2010–09/12/2011, selling mainly unique all-occasion gifts. Included in this repo at `data/Online_Retail.xlsx`.
+## Dataset Summary
+●	Source: UCI Machine Learning Repository — Online Retail dataset
+●	Size: 541,909 transaction line items, 8 columns
+●	Timeframe: December 1, 2010 – December 9, 2011
+●	Grain: one row per product line item per invoice (not one row per order)
+●	Columns: InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country
 
-> **Note on repo size:** the dataset is ~23 MB. That's well under GitHub's hard 100 MB file limit, but if you clone this repo as a starting point for your own fork and plan to add much more binary data (larger exports, additional `.pbix` versions), consider [Git LFS](https://git-lfs.com/) rather than committing large files directly.
 ## How to Run
 
 ### Prerequisites
