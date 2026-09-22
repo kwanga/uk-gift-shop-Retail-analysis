@@ -1,7 +1,4 @@
 # Technical Documentation
-
-> This is a markdown transcription of [`technical_documentation.docx`](technical_documentation.docx) for readability on GitHub. The original Word document has the full screenshots (pgAdmin queries, Power BI Model view, DAX formula screenshots, dashboard pages); this version carries the same content and figures in text form.
-
 ## Executive Summary
 
 This project analyzes 541,909 transactions from a UK-based online gift retailer (Dec 2010–Dec 2011) to identify revenue drivers, customer value, and operational risk. Data was cleaned and modeled in PostgreSQL, then visualized in Power BI using DAX measures across four dashboard pages. Key findings include an 84.03% UK revenue concentration, a small customer segment (Loyal + Champion, driving over 95% of revenue) responsible for the majority of value, and clear operational patterns (Thursday/midday peak volume) that inform staffing and marketing timing.
@@ -10,7 +7,7 @@ This project analyzes 541,909 transactions from a UK-based online gift retailer 
 
 ### Introduction
 
-This project sits in the e-commerce and retail space — specifically online gift and homeware sales, with both everyday individual customers (B2C) and some smaller wholesale buyers (B2B) mixed in. The dataset is transactional and order-level: each row is one product bought on one invoice, showing what was purchased, how much, at what price, when, by whom, and where it shipped. It's the kind of data a retail analyst or BI team would work with day to day, so the skills used here (cleaning, segmentation, product analysis, dashboarding) carry over directly to similar roles in retail, DTC, or marketplace businesses.
+This project sits in the e-commerce and retail space, specifically online gift and homeware sales, with both everyday individual customers (B2C) and some smaller wholesale buyers (B2B) mixed in. The dataset is transactional and order-level: each row is one product bought on one invoice, showing what was purchased, how much, at what price, when, by whom, and where it shipped. It's the kind of data a retail analyst or BI team would work with day to day, so the skills used here (cleaning, segmentation, product analysis, dashboarding) carry over directly to similar roles in retail, DTC, or marketplace businesses.
 
 ### Problem Statement
 
@@ -23,7 +20,7 @@ This project set out to answer a defined set of business questions across three 
 - What percentage of total revenue relies solely on the UK, and how exposed is the business to a single-market downturn?
 
 **Marketing & Customer Behavior (Marketing Director)**
-- What is the customer retention rate — how many customers buy once versus multiple times?
+- What is the customer retention rate,how many customers buy once versus multiple times?
 - Who are the VIP customers (top 10% by total spend), and how can they be targeted for a loyalty program?
 - What specific hours of the day do transactions peak, to inform promotional email timing?
 - What specific days of the week generate the highest sales, to inform weekend ad spend decisions?
