@@ -11,7 +11,7 @@ End-to-end data analytics project on the UCI Online Retail dataset (541,000+ tra
 
 ## Table of Contents
 
-- [EXECUTIVE SUMMARY](# EXECUTIVE SUMMARY)
+- [Executive_Summary](#EXECUTIVE-SUMMARY)
 -  [Dataset](#dataset)
 - [Repository Structure](#repository-structure)
 - [Key Findings](#key-findings)
@@ -51,11 +51,12 @@ The raw data was never edited directly. All cleaning logic lives in a single SQL
 
 [UCI Machine Learning Repository — Online Retail Data Set](https://archive.ics.uci.edu/dataset/352/online+retail). Transactions for a UK-based, registered non-store online retailer, 01/12/2010–09/12/2011, selling mainly unique all-occasion gifts. Included in this repo at `data/Online_Retail.xlsx`.
 ## Dataset Summary
-●	Source: UCI Machine Learning Repository — Online Retail dataset
-●	Size: 541,909 transaction line items, 8 columns
-●	Timeframe: December 1, 2010 – December 9, 2011
-●	Grain: one row per product line item per invoice (not one row per order)
-●	Columns: InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country
+- ●	Source: UCI Machine Learning Repository — Online Retail dataset
+- ●	Size: 541,909 transaction line items, 8 columns
+- ●	Timeframe: December 1, 2010 – December 9, 2011
+- ●	Grain: one row per product line item per invoice (not one row per order)
+- ●	Columns: InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country
+  
 ## Business Impact
 
 | Metric | Value |
