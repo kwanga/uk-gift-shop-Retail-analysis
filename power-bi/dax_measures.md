@@ -20,7 +20,7 @@ DIVIDE([Cancelled Value], [Gross Sales Value])
 
 `[Cancelled Value]` and `[Gross Sales Value]` are their own measures (not shown here), `Cancelled Value` uses `ABS()` on the cancelled-row total since `revenue` is already negative for cancellation rows, and `Gross Sales Value` sums only non-cancelled rows as the denominator. Without the `ABS()`, a naive `SUM()` would understate the true rate.
 
-Reported alongside **Cancellation Rate by Orders** (share of orders on invoices starting with "C") because the two tell different stories — cancelled orders tend to be smaller than average, so the value-based rate (8.41%) comes out lower than the order-count-based rate (16.12%).
+Reported alongside **Cancellation Rate by Orders** (share of orders on invoices starting with "C") because the two tell different stories, cancelled orders tend to be smaller than average, so the value-based rate (8.41%) comes out lower than the order-count-based rate (16.12%).
 
 ## Median Order Value
 
