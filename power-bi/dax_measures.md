@@ -18,7 +18,7 @@ Cancellation Rate by Value =
 DIVIDE([Cancelled Value], [Gross Sales Value])
 ```
 
-`[Cancelled Value]` and `[Gross Sales Value]` are their own measures (not shown here) — `Cancelled Value` uses `ABS()` on the cancelled-row total since `revenue` is already negative for cancellation rows, and `Gross Sales Value` sums only non-cancelled rows as the denominator. Without the `ABS()`, a naive `SUM()` would understate the true rate.
+`[Cancelled Value]` and `[Gross Sales Value]` are their own measures (not shown here), `Cancelled Value` uses `ABS()` on the cancelled-row total since `revenue` is already negative for cancellation rows, and `Gross Sales Value` sums only non-cancelled rows as the denominator. Without the `ABS()`, a naive `SUM()` would understate the true rate.
 
 Reported alongside **Cancellation Rate by Orders** (share of orders on invoices starting with "C") because the two tell different stories — cancelled orders tend to be smaller than average, so the value-based rate (8.41%) comes out lower than the order-count-based rate (16.12%).
 
@@ -32,7 +32,7 @@ CALCULATE(
 )
 ```
 
-Note this is computed over `rfm_customers[monetary]` — per-customer lifetime revenue — not per-order value. `REMOVEFILTERS(rfm_customers[segment])` keeps the figure stable regardless of which segment a visual is filtered to. Reported alongside the average order value (£494.10) since a handful of large bulk orders pull the mean upward.
+Note this is computed over `rfm_customers[monetary]`- per-customer lifetime revenue, not per-order value. `REMOVEFILTERS(rfm_customers[segment])` keeps the figure stable regardless of which segment a visual is filtered to. Reported alongside the average order value (£494.10) since a handful of large bulk orders pull the mean upward.
 
 ## Segment % of Revenue
 
@@ -41,7 +41,7 @@ Segment % of Revenue =
 DIVIDE([Segment Revenue], CALCULATE([Segment Revenue], ALL(rfm_customers[segment])))
 ```
 
-Lets any RFM segment's revenue contribution be read instantly when the visual is filtered to that segment — the denominator recalculates across all segments regardless of the current filter context.
+Lets any RFM segment's revenue contribution be read instantly when the visual is filtered to that segment, the denominator recalculates across all segments regardless of the current filter context.
 
 ## VIP Threshold
 
@@ -74,7 +74,7 @@ RETURN
     DIVIDE(CleanRepeatCustomers, CleanTotalCustomers, 0)
 ```
 
-`rfm_customers[Customer Loyalty Status]` is a Power BI–side column (not part of the SQL `rfm_customers` table) tagging each customer as "Repeat Customer" or otherwise — likely derived from `frequency > 1`, though the exact formula for that column wasn't captured. This measure exists as a cross-check against the RFM segmentation: an early retention calculation contradicted the RFM numbers until both were run against the same cancellation/guest-checkout filters, at which point they agreed.
+`rfm_customers[Customer Loyalty Status]` is a Power BI–side column (not part of the SQL `rfm_customers` table) tagging each customer as "Repeat Customer" or otherwise, likely derived from `frequency > 1`, though the exact formula for that column wasn't captured. This measure exists as a cross-check against the RFM segmentation: an early retention calculation contradicted the RFM numbers until both were run against the same cancellation/guest-checkout filters, at which point they agreed.
 
 ## Free Giveaway Units
 
