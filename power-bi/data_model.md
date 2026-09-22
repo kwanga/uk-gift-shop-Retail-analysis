@@ -1,6 +1,6 @@
 # Power BI Data Model
 
-`cleaned_transactions` sits at the center as the fact table. `rfm_customers` is a dimension table, one row per customer, joined on `customer_id`. `Date` is a standard date table, joined on `invoice_date`. `raw_transactions` is imported separately and kept unrelated to the rest of the model on purpose — it holds rows (like free giveaways) that `cleaned_transactions` deliberately excludes, and connecting it would risk double-counting.
+`cleaned_transactions` sits at the center as the fact table. `rfm_customers` is a dimension table, one row per customer, joined on `customer_id`. `Date` is a standard date table, joined on `invoice_date`. `raw_transactions` is imported separately and kept unrelated to the rest of the model on purpose, it holds rows (like free giveaways) that `cleaned_transactions` deliberately excludes, and connecting it would risk double-counting.
 
 ## Tables
 
